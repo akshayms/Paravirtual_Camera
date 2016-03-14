@@ -36,7 +36,7 @@ static int __init server_module_init( void ) {
   addr.sun_family = AF_UNIX;
   strcpy(addr.sun_path, SOCK_PATH);
 
-  retval = sock->ops->connect(sock,(struct sockaddr *)&addr, sizeof(addr), 0);
+  retval = sock->ops->connect(sock,(struct sockaddr *)&addr, sizeof(addr) - 1, 0);
   if(retval == -1){
   	printk(KERN_INFO "Socket Binding failed\n");
   	return -1;
